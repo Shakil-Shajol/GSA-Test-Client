@@ -25,7 +25,7 @@ export class StudentService {
     return this.http.post<Student>(this.url,data);
   }
 
-  update(data:StudentAdd):Observable<Student>{
+  update(data):Observable<Student>{
     return this.http.put<Student>(this.url,data);
   }
 

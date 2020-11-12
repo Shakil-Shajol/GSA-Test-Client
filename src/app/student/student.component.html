@@ -3,15 +3,18 @@
         <h3>Student List</h3>
     </div>
     <div class="col-4 mt-2">
-        <a href="#" [routerLink]="['/add']" class="btn btn-primary">Add New</a>
+        <div class="ml-auto">
+            <a href="#" [routerLink]="['/add']" class="btn btn-primary">Add New</a>
+        </div>
     </div>
 </div>
 
-<table class="table table-borderd">
+<table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Gender</th>
+            <th>Date Of Birth</th>
             <th>Photo</th>
             <th>Actions</th>
         </tr>
@@ -20,12 +23,13 @@
         <tr *ngFor="let s of students;">
             <td>{{s.studentName}}</td>
             <td>{{s.gender}}</td>
+            <td>{{s.dateOfBirth | date:'MMM dd, yyyy'}}</td>
             <td>
-                <img [src]="url+s.picturePath" alt="">
+                <img [src]="url+s.picturePath" alt="profile image" width="50px">
             </td>
             <td>
-                <a href="#" [routerLink]="['/edit/'+s.studentId]">Edit</a> |
-                <a href="#" (click)="onDelete(s.studentId)">Delete</a>
+                <a href="#" [routerLink]="['/edit/'+s.studentId]" class="btn btn-outline-primary">Edit</a> |
+                <button (click)="onDelete(s.studentId)" class="btn btn-outline-danger">Delete</button>
             </td>
         </tr>
     </tbody>
