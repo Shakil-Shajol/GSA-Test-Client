@@ -14,6 +14,7 @@ export class EditComponent implements OnInit {
   form: FormGroup;
   studentId:number;
   genders:Gender[];
+  formatedDate:Date;
   constructor(private services:StudentService,private genderService:GenderService, private formBuilder: FormBuilder, private avRoute: ActivatedRoute, private router: Router) { 
     const idParam='id';
     if (this.avRoute.snapshot.params[idParam]) {
@@ -31,9 +32,10 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.getGenders();
     this.services.getById(this.studentId).subscribe(res=>{
+      this.formatedDate=res.dateOfBirth
       this.form.controls['studentId'].setValue(res.studentId),
       this.form.controls['studentName'].setValue(res.studentName),
-      this.form.controls['dateOfBirth'].setValue(res.dateOfBirth),
+      this.form.controls['dateOfBirth'].setValue(this.formatedDate),
       this.form.controls['genderId'].setValue(res.genderId)
       console.log(res);
     })

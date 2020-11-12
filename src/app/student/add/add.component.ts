@@ -4,6 +4,7 @@ import { Gender } from "src/app/models/gender";
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenderService } from 'src/app/services/gender.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -19,7 +20,7 @@ export class AddComponent implements OnInit {
   validationMessages: any;
   dpConfig:Partial<BsDatepickerConfig>;
   formatedDate:Date;
-  constructor(private service:StudentService,private genderService:GenderService,private fb:FormBuilder) { 
+  constructor(private service:StudentService,private genderService:GenderService,private fb:FormBuilder,private router:Router) { 
     this.form=new FormGroup({
       'studentName':new FormControl(null),
       'dateOfBirth':new FormControl(null),
@@ -59,8 +60,8 @@ export class AddComponent implements OnInit {
     console.log(this.form.get("genderId").value);
     this.service.post(fd).subscribe((res)=>{
       // this.toastr.success(res.studentId, 'Your ID');
-      console.log("under this")
       console.log(res);
+      this.router.navigate(['/students'])
     },
     (err)=>console.log(err))
   }
