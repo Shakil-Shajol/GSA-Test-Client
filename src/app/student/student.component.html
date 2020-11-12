@@ -1,0 +1,32 @@
+<div class="row mb-5">
+    <div class="col-8 mt-2">
+        <h3>Student List</h3>
+    </div>
+    <div class="col-4 mt-2">
+        <a href="#" [routerLink]="['/add']" class="btn btn-light">Add New</a>
+    </div>
+</div>
+
+<table class="table table-borderd">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Photo</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of students;">
+            <td>{{s.studentName}}</td>
+            <td>{{s.gender}}</td>
+            <td>
+                <img [src]="url+s.picturePath" alt="">
+            </td>
+            <td>
+                <a href="#" [routerLink]="['/edit/'+s.studentId]">Edit</a> |
+                <a href="#" (click)="onDelete(s.studentId)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
