@@ -11,9 +11,10 @@ import { EditComponent } from './student/edit/edit.component';
 import { StudentService } from "./services/student.service";
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { GenderService } from './services/gender.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,10 +29,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    BsDatepickerModule.forRoot()
   ],
   providers: [StudentService,GenderService],
   bootstrap: [AppComponent]

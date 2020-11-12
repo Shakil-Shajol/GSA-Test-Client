@@ -20,9 +20,9 @@ export class StudentService {
     return this.http.get<Student>(this.url+"/"+id);
   }
 
-  post(data):Observable<any>{
+  post(data):Observable<Student>{
     console.log(data);
-    return this.http.post(this.url,data);
+    return this.http.post<Student>(this.url,data);
   }
 
   update(data:StudentAdd):Observable<Student>{

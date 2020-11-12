@@ -3,6 +3,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { Gender } from "src/app/models/gender";
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenderService } from 'src/app/services/gender.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-add',
@@ -16,12 +17,15 @@ export class AddComponent implements OnInit {
   imageUrl:string='./assets/Images/profile.png';
   formErrors: any;
   validationMessages: any;
+  dpConfig:Partial<BsDatepickerConfig>;
+  formatedDate:Date;
   constructor(private service:StudentService,private genderService:GenderService,private fb:FormBuilder) { 
     this.form=new FormGroup({
       'studentName':new FormControl(null),
       'dateOfBirth':new FormControl(null),
       'genderId':new FormControl(null)
-    })
+    });
+    this.dpConfig=Object.assign({},{containerClass:'theme-dark-blue',showWeekNumbers:false,dateInputFormat:"DD-MM-YYYY",adaptivePosition: true})
   }
 
   ngOnInit(): void {
@@ -32,7 +36,6 @@ export class AddComponent implements OnInit {
       genderId:[null,Validators.required]
     });
     this.form.valueChanges.subscribe((data)=>{
-      this.logValidationErrors(this.form)
     });
 
   }
@@ -67,25 +70,5 @@ export class AddComponent implements OnInit {
       console.log(this.genders);
     })
   }
-
-  logValidationErrors(group:FormGroup=this.form):void{
-    Object.keys(group.controls).forEach((key: string)=>{
-      const abstractControl =group.get(key);
-
-        this.formErrors[key]='';
-        if (abstractControl && !abstractControl.valid && (abstractControl.touched||abstractControl.dirty)) {
-          const messages=this.validationMessages[key];
-          for (const errorKey in abstractControl.errors) {
-            if (errorKey) {
-              this.formErrors[key] += messages[errorKey] + ' ';
-            }
-            
-          }
-        }
-        if (abstractControl instanceof FormGroup) {
-          this.logValidationErrors(abstractControl);
-        }
-
-    })
-  }
+  
 }
