@@ -1,6 +1,4 @@
-# StudentInfoManagementClient
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
+#For API Please go to https://github.com/Shakil-Shajol/GSA-Test
 
 ## Development server
 
