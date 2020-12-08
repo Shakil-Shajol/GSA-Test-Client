@@ -4,33 +4,39 @@
     </div>
     <div class="col-4 mt-2">
         <div class="ml-auto">
-            <a href="#" [routerLink]="['/add']" class="btn btn-primary">Add New</a>
+            <button  class="float-right" kendoButton [icon]="'plus-outline'" [width]="100" [look]="'outline'" [routerLink]="['/add']" ></button>
         </div>
     </div>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Date Of Birth</th>
-            <th>Photo</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let s of students;">
-            <td>{{s.studentName}}</td>
-            <td>{{s.gender}}</td>
-            <td>{{s.dateOfBirth | date:'MMM dd, yyyy'}}</td>
-            <td>
-                <img [src]="url+s.picturePath" alt="profile image" width="50px">
-            </td>
-            <td>
-                <a href="#" [routerLink]="['/edit/'+s.studentId]" class="btn btn-outline-primary">Edit</a> |
-                <button (click)="onDelete(s.studentId)" class="btn btn-outline-danger">Delete</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<kendo-grid
+          [kendoGridBinding]="students"
+          [height]="410"
+          [pageSize]="4"
+          [pageable]="true"
+          [sortable]="true"
+          [filterable]="true"
+          >
+          <kendo-grid-column field="studentId" title="ID" width="40" [filterable]="false">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span >{{dataItem.studentId}}</span>        
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="studentName" title="Student Name" >
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span >{{dataItem.studentName}}</span>        
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="gender" title="Gender"  width="180">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span >{{dataItem.gender}}</span>        
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="dateOfBirth" title="Date Of Birth"  filter="date" format="{0:d}" width="240">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span >{{dataItem.dateOfBirth}}</span>        
+              </ng-template>
+          </kendo-grid-column>
+</kendo-grid>
+
+

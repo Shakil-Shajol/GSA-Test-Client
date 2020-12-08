@@ -15,6 +15,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GenderService } from './services/gender.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { GridModule } from '@progress/kendo-angular-grid';
+
+
 
 
 @NgModule({
@@ -33,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    ButtonsModule,
+    GridModule
   ],
   providers: [StudentService,GenderService],
   bootstrap: [AppComponent]
