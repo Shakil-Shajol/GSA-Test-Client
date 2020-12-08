@@ -4,7 +4,7 @@
     </div>
     <div class="col-4 mt-2">
         <div class="ml-auto">
-            <button  class="float-right" kendoButton [icon]="'plus-outline'" [width]="100" [look]="'outline'" [routerLink]="['/add']" ></button>
+            <button  class="float-right" kendoButton [icon]="'plus-outline'" [look]="'outline'" [routerLink]="['/add']" ></button>
         </div>
     </div>
 </div>
@@ -20,6 +20,11 @@
           <kendo-grid-column field="studentId" title="ID" width="40" [filterable]="false">
             <ng-template kendoGridCellTemplate let-dataItem>
                 <span >{{dataItem.studentId}}</span>        
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="picturePath" title="Picture" >
+            <ng-template kendoGridCellTemplate let-dataItem>
+                  <img src="{{url+dataItem.picturePath}}" onerror=" this.src = './assets/Images/profile.png'" height="40" width="40" style="border-radius:30px;" alt="Student Picture"> 
               </ng-template>
           </kendo-grid-column>
           <kendo-grid-column field="studentName" title="Student Name" >

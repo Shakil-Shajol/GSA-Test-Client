@@ -17,6 +17,12 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
+
+
 
 
 
@@ -39,7 +45,10 @@ import { GridModule } from '@progress/kendo-angular-grid';
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     ButtonsModule,
-    GridModule
+    GridModule,
+    InputsModule,
+    DropDownsModule,
+    DateInputsModule
   ],
   providers: [StudentService,GenderService],
   bootstrap: [AppComponent]

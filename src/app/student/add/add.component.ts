@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Gender } from "src/app/models/gender";
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenderService } from 'src/app/services/gender.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-add',
@@ -14,13 +15,14 @@ import { Router } from '@angular/router';
 export class AddComponent implements OnInit {
   genders:Gender[];
   selectedImage:File=null;
+  selectedFileName:string="";
   form:FormGroup;
   imageUrl:string='./assets/Images/profile.png';
   formErrors: any;
   validationMessages: any;
   dpConfig:Partial<BsDatepickerConfig>;
   formatedDate:Date;
-  constructor(private service:StudentService,private genderService:GenderService,private fb:FormBuilder,private router:Router) { 
+  constructor(private service:StudentService,private genderService:GenderService,private fb:FormBuilder,private router:Router,private angular:ElementRef) { 
     this.form=new FormGroup({
       'studentName':new FormControl(null),
       'dateOfBirth':new FormControl(null),
@@ -29,6 +31,12 @@ export class AddComponent implements OnInit {
     this.dpConfig=Object.assign({},{containerClass:'theme-dark-blue',showWeekNumbers:false,dateInputFormat:"DD-MM-YYYY",adaptivePosition: true})
   }
 
+  clickUpload(event:any){
+      event.preventDefault();
+      let element: HTMLElement=document.getElementById('openFile') as HTMLElement;
+      element.click();
+  }
+  
   ngOnInit(): void {
     this.getGenders();
     this.form=this.fb.group({
@@ -43,6 +51,7 @@ export class AddComponent implements OnInit {
 
   onImageSelected(event){
     this.selectedImage=<File>event.target.files[0];
+    this.selectedFileName=event.target.files[0].name;
     var reader=new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     reader.onload=(e:any)=>{

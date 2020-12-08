@@ -1,0 +1,22 @@
+.text-input {
+    padding: 0;
+    width: 100%;
+    display: block;
+    font-size: 18px;
+    line-height: 50px;
+  }
+
+  .file-input {
+    padding: 0;
+    width: 100%;
+    font-size: 18px;
+    line-height: 50px;
+  }
+
+  .invisible{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+  
