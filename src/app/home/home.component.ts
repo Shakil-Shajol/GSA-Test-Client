@@ -6,6 +6,7 @@ import { Component, Inject, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  title:string="Student Info Management"
   constructor( ) {
       
    }

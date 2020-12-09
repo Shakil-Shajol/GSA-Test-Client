@@ -1,53 +1,51 @@
 <div class="row mb-1">
-    <div class="col-8 mt-2">
-        <h3>Student List</h3>
-    </div>
-    <div class="col-4 mt-2">
-        <div class="ml-auto">
-            <button  class="float-right" kendoButton [icon]="'plus-outline'" [look]="'outline'" [routerLink]="['/add']" ></button>
-        </div>
-    </div>
+  <div class="col-8 mt-2">
+      <h3>Student List</h3>
+  </div>
+  <div class="col-4 mt-2">
+      <div class="ml-auto">
+          <button class="float-right" kendoButton [icon]="'plus-outline'" [look]="'outline'" [routerLink]="['/add']"></button>
+      </div>
+  </div>
 </div>
 
-<kendo-grid
-          [kendoGridBinding]="students"
+<kendo-grid [kendoGridBinding]="students"
           [height]="460"
           [pageSize]="6"
           [pageable]="true"
           [sortable]="true"
-          [filterable]="true"
-          >
-          <kendo-grid-column field="studentId" title="ID" width="40" [filterable]="false">
-            <ng-template kendoGridCellTemplate let-dataItem>
-                <span >{{dataItem.studentId}}</span>        
-              </ng-template>
-          </kendo-grid-column>
-          <kendo-grid-column field="picturePath" title="Picture" width="80" [filterable]="false">
-            <ng-template kendoGridCellTemplate let-dataItem>
-                  <img src="{{url+dataItem.picturePath}}" onerror=" this.src = './assets/Images/profile.png'" height="40" width="40" style="border-radius:30px;" alt="Student Picture"> 
-              </ng-template>
-          </kendo-grid-column>
-          <kendo-grid-column field="studentName" title="Student Name" >
-            <ng-template kendoGridCellTemplate let-dataItem>
-                <span >{{dataItem.studentName}}</span>        
-              </ng-template>
-          </kendo-grid-column>
-          <kendo-grid-column field="gender" title="Gender"  width="180">
-            <ng-template kendoGridCellTemplate let-dataItem>
-                <span >{{dataItem.gender}}</span>        
-              </ng-template>
-          </kendo-grid-column>
-          <kendo-grid-column field="dateOfBirth" title="Date Of Birth"  filter="date" format="{0:d}" width="240">
-            <ng-template kendoGridCellTemplate let-dataItem>
-                <span >{{dataItem.dateOfBirth|date}}</span>        
-              </ng-template>
-          </kendo-grid-column>
-          <kendo-grid-column title="Actions" width="100" [filterable]="false">
-            <ng-template kendoGridCellTemplate let-dataItem>
-              <button kendoButton [icon]="'edit'" [look]="'outline'" [routerLink]="['/edit/'+dataItem.studentId]"></button> |
-              <button kendoButton [icon]="'delete'" [look]="'outline'"  (click)="onDelete(dataItem.studentId)"></button>       
-              </ng-template>
-          </kendo-grid-column>
+          [filterable]="true">
+  <kendo-grid-column field="studentId" title="ID" width="40" [filterable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+          <span>{{dataItem.studentId}}</span>
+      </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="picturePath" title="Picture" width="80" [filterable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+          <img src="{{url+dataItem.picturePath}}" onerror=" this.src = './assets/Images/profile.png'" height="40" width="40" style="border-radius:30px;" alt="Student Picture">
+      </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="studentName" title="Student Name">
+      <ng-template kendoGridCellTemplate let-dataItem>
+          <span>{{dataItem.studentName}}</span>
+      </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="gender" title="Gender" width="180">
+      <ng-template kendoGridCellTemplate let-dataItem>
+          <span>{{dataItem.gender}}</span>
+      </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="dateOfBirth" title="Date Of Birth" filter="date" format="{0:d}" width="240">
+      <ng-template kendoGridCellTemplate let-dataItem>
+          <span>{{dataItem.dateOfBirth|date}}</span>
+      </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column title="Actions" width="100" [filterable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+          <button kendoButton [icon]="'edit'" [look]="'outline'" [routerLink]="['/edit/'+dataItem.studentId]"></button> |
+          <button kendoButton [icon]="'delete'" [look]="'outline'" (click)="onDelete(dataItem.studentId)"></button>
+      </ng-template>
+  </kendo-grid-column>
 </kendo-grid>
 
 

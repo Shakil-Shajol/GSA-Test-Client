@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { GenderService } from 'src/app/services/gender.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Router } from '@angular/router';
+import { getDate, addMonths,addYears } from '@progress/kendo-date-math';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -93,5 +94,5 @@ export class AddComponent implements OnInit {
       day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), mnth, day].join("-");
   }
-  
+  public max: Date = addYears(getDate(new Date()), -12);
 }

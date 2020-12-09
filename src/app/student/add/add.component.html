@@ -8,7 +8,6 @@
               <div class="col-md-8">
                   <div class="form-group">
                       <label for="studentName">Student Name</label>
-                      <!-- <input type="text" kendoTextBox class="text-input" formControlName="studentName" id="studentName" placeholder="Student Name"> -->
                       <kendo-textbox class="text-input"
                                      formControlName="studentName"
                                      placeholder="Student Name"
@@ -27,15 +26,12 @@
                                           [valuePrimitive]="true"
                                           required>
                       </kendo-dropdownlist>
-                      <!-- <select class="form-control" formControlName="genderId" id="genderId">
-                        <option *ngFor="let g of genders" [value]="g.genderId">{{g.genderName}}</option>
-                      </select> -->
                   </div>
                   <div class="form-group">
                       <label for="dateOfBirth">Date Of Birth</label>
-                      <!-- <input type="date" autocomplete="off" class="form-control mb-3"  formControlName="dateOfBirth" id="dateOfBirth"> -->
                       <kendo-datepicker class="text-input"
-                                        formControlName="dateOfBirth"
+                                        formControlName="dateOfBirth"                           
+                                        [max]="max"
                                         id="dateOfBirth"></kendo-datepicker>
                   </div>
                   <div class="form-group">

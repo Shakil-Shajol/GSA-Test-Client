@@ -1,68 +1,61 @@
-<form  [formGroup]="form" (ngSubmit)="onSubmited()" novalidate>
-    <div class="card mt-2">
-        <div class="card-heading  text-white bg-dark">
-            <h3 class="pl-1">Edit Student</h3>
-        </div>
-        <div class="card-body">
-        <div class="row no-gutter">
-        <div class="col-md-8">
-          <div class="form-group">
-            <label for="studentName">Student Name</label>
-            <input type="hidden"  formControlName="studentId" id="studentId">
-            <!-- <input type="text" class="form-control" formControlName="studentName" id="studentName" placeholder="Student Name"> -->
-            <kendo-textbox 
-                          class="text-input"
-                          formControlName="studentName"
-                          placeholder="Student Name"
-                          [showSuccessIcon]="'initial'"
-                          [showErrorIcon]="'initial'"></kendo-textbox>
-          </div>
-          <div class="form-group">
-            <label for="genderId">Gender</label>
-            <kendo-dropdownlist #gender
-            class="text-input"
-            formControlName="genderId"
-            [data]="genders"
-            [defaultItem]="{ genderName: 'Select gender', genderId: null }"
-            [textField]="'genderName'"
-            [valueField]="'genderId'"
-            [valuePrimitive]="true"
-            required>
-</kendo-dropdownlist>
-            <!-- <select class="form-control" formControlName="genderId" id="genderId">
-              <option *ngFor="let g of genders" [value]="g.genderId">{{g.genderName}}</option>
-            </select> -->
-          </div>
-          <div class="form-group">
-            <label for="dateOfBirth">Date Of Birth</label>
-            <!-- <input type="date" autocomplete="off" class="form-control mb-3"  formControlName="dateOfBirth" id="dateOfBirth" [value]="formatedDate|date:'yyyy-MM-dd'"> -->
-            <kendo-datepicker class="text-input"
-            formControlName="dateOfBirth"
-            [format]="'dd-MMM-yyyy'"
-            [max]="max"
-            [value]="formatedDate"
-            id="dateOfBirth"></kendo-datepicker>
-          </div>
-          <div class="form-group">
-            <label for="picture">Photo</label>
-            <!-- <input type="file" class="btn btn-light" value="Browse" class="form-control" (change)="onImageSelected($event)"> -->
-            <kendo-textbox placeholder="Browse files." class="file-input" [value]="selectedFileName" [clearButton]="true">
-              <ng-template kendoTextBoxPrefixTemplate>
-                  <button kendoButton look="clear" icon="image" (click)="clickUpload($event)"></button>
-                  <kendo-textbox-separator></kendo-textbox-separator>
-              </ng-template>
-          </kendo-textbox>
-          <input type="file" value="Browse" id="openFile" class="invisible" (change)="onImageSelected($event)">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <img [src]="imageUrl" class="card-img" alt="Choose Image">
-        </div>
+<form [formGroup]="form" (ngSubmit)="onSubmited()" novalidate>
+  <div class="card mt-2">
+      <div class="card-heading  text-white bg-dark">
+          <h3 class="pl-1">Edit Student</h3>
       </div>
-        </div>
-        <div class="card-footer">
-        <button type="submit"  kendoButton [look]="'outline'">Save Changes</button>
-        </div>
-    
-    </div>
-    </form>
+      <div class="card-body">
+          <div class="row no-gutter">
+              <div class="col-md-8">
+                  <div class="form-group">
+                      <label for="studentName">Student Name</label>
+                      <input type="hidden" formControlName="studentId" id="studentId">
+                      <kendo-textbox class="text-input"
+                                     formControlName="studentName"
+                                     placeholder="Student Name"
+                                     [showSuccessIcon]="'initial'"
+                                     [showErrorIcon]="'initial'"></kendo-textbox>
+                  </div>
+                  <div class="form-group">
+                      <label for="genderId">Gender</label>
+                      <kendo-dropdownlist #gender
+                                          class="text-input"
+                                          formControlName="genderId"
+                                          [data]="genders"
+                                          [defaultItem]="{ genderName: 'Select gender', genderId: null }"
+                                          [textField]="'genderName'"
+                                          [valueField]="'genderId'"
+                                          [valuePrimitive]="true"
+                                          required>
+                      </kendo-dropdownlist>
+                  </div>
+                  <div class="form-group">
+                      <label for="dateOfBirth">Date Of Birth</label>
+                      <kendo-datepicker class="text-input"
+                                        formControlName="dateOfBirth"
+                                        [format]="'dd-MMM-yyyy'"
+                                        [max]="max"
+                                        [value]="formatedDate"
+                                        id="dateOfBirth"></kendo-datepicker>
+                  </div>
+                  <div class="form-group">
+                      <label for="picture">Photo</label>
+                      <kendo-textbox placeholder="Browse files." class="file-input" [value]="selectedFileName" [clearButton]="true">
+                          <ng-template kendoTextBoxPrefixTemplate>
+                              <button kendoButton look="clear" icon="image" (click)="clickUpload($event)"></button>
+                              <kendo-textbox-separator></kendo-textbox-separator>
+                          </ng-template>
+                      </kendo-textbox>
+                      <input type="file" value="Browse" id="openFile" class="invisible" (change)="onImageSelected($event)">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <img [src]="imageUrl" class="card-img" alt="Choose Image">
+              </div>
+          </div>
+      </div>
+      <div class="card-footer">
+          <button type="submit" kendoButton [look]="'outline'">Save Changes</button>
+      </div>
+
+  </div>
+</form>
