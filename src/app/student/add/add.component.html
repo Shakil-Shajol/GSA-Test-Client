@@ -1,61 +1,62 @@
-<form  [formGroup]="form" (ngSubmit)="onSubmited()" novalidate>
-<div class="card mt-2">
-	<div class="card-heading  text-white bg-primary">
-		<h3 class="pl-1">Add New Student</h3>
-	</div>
-	<div class="card-body">
-    <div class="row no-gutter">
-    <div class="col-md-8">
-      <div class="form-group">
-        <label for="studentName">Student Name</label>
-        <input type="text" kendoTextBox class="text-input" formControlName="studentName" id="studentName" placeholder="Student Name">
-        <!-- <kendo-textbox placeholder="studentName" formControlName="studentName" id="studentName" [clearButton]="true">
-          <ng-template kendoTextBoxPrefixTemplate>
-          </ng-template>
-      </kendo-textbox> -->
+<form [formGroup]="form" (ngSubmit)="onSubmited()" novalidate>
+  <div class="card mt-2">
+      <div class="card-heading  text-white bg-dark">
+          <h3 class="pl-1">Add New Student</h3>
       </div>
-      <div class="form-group">
-        <label for="genderId">Gender</label>
-        <kendo-dropdownlist
-        [data]="genders"
-        formControlName="genderId"
-        id="genderId"
-        textField="genderName"
-        valueField="genderId"
-        class="text-input">
-    </kendo-dropdownlist>
-        <!-- <select class="form-control" formControlName="genderId" id="genderId">
-          <option *ngFor="let g of genders" [value]="g.genderId">{{g.genderName}}</option>
-        </select> -->
+      <div class="card-body">
+          <div class="row no-gutter">
+              <div class="col-md-8">
+                  <div class="form-group">
+                      <label for="studentName">Student Name</label>
+                      <!-- <input type="text" kendoTextBox class="text-input" formControlName="studentName" id="studentName" placeholder="Student Name"> -->
+                      <kendo-textbox class="text-input"
+                                     formControlName="studentName"
+                                     placeholder="Student Name"
+                                     [showSuccessIcon]="'initial'"
+                                     [showErrorIcon]="'initial'"></kendo-textbox>
+                  </div>
+                  <div class="form-group">
+                      <label for="genderId">Gender</label>
+                      <kendo-dropdownlist #gender
+                                          class="text-input"
+                                          formControlName="genderId"
+                                          [data]="genders"
+                                          [defaultItem]="{ genderName: 'Select gender', genderId: null }"
+                                          [textField]="'genderName'"
+                                          [valueField]="'genderId'"
+                                          [valuePrimitive]="true"
+                                          required>
+                      </kendo-dropdownlist>
+                      <!-- <select class="form-control" formControlName="genderId" id="genderId">
+                        <option *ngFor="let g of genders" [value]="g.genderId">{{g.genderName}}</option>
+                      </select> -->
+                  </div>
+                  <div class="form-group">
+                      <label for="dateOfBirth">Date Of Birth</label>
+                      <!-- <input type="date" autocomplete="off" class="form-control mb-3"  formControlName="dateOfBirth" id="dateOfBirth"> -->
+                      <kendo-datepicker class="text-input"
+                                        formControlName="dateOfBirth"
+                                        id="dateOfBirth"></kendo-datepicker>
+                  </div>
+                  <div class="form-group">
+                      <label for="picture">Photo</label>
+                      <kendo-textbox placeholder="Browse files." class="file-input" [value]="selectedFileName" [clearButton]="true">
+                          <ng-template kendoTextBoxPrefixTemplate>
+                              <button kendoButton look="clear" icon="image" (click)="clickUpload($event)"></button>
+                              <kendo-textbox-separator></kendo-textbox-separator>
+                          </ng-template>
+                      </kendo-textbox>
+                      <input type="file" value="Browse" id="openFile" class="invisible" (change)="onImageSelected($event)">
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <img [src]="imageUrl" class="card-img" alt="Choose Image">
+              </div>
+          </div>
       </div>
-      <div class="form-group">
-        <label for="dateOfBirth">Date Of Birth</label>
-        <!-- <input type="date" autocomplete="off" class="form-control mb-3"  formControlName="dateOfBirth" id="dateOfBirth"> -->
-        <kendo-datepicker
-              class="text-input"
-              formControlName="dateOfBirth"
-              id="dateOfBirth"
-            ></kendo-datepicker>
+      <div class="card-footer">
+          <button type="submit" kendoButton [look]="'outline'">Submit</button>
       </div>
-      <div class="form-group">
-        <label for="picture">Photo</label>
-        <kendo-textbox placeholder="Browse files." class="file-input" [value]="selectedFileName" [clearButton]="true">
-          <ng-template kendoTextBoxPrefixTemplate>
-                  <button kendoButton look="clear" icon="image" (click)="clickUpload($event)"></button>
-              <kendo-textbox-separator></kendo-textbox-separator>
-          </ng-template>
-      </kendo-textbox>
-        <input type="file" value="Browse" id="openFile" class="invisible" (change)="onImageSelected($event)">
-      </div>
-    </div>
-    <div class="col-md-4">
-      <img [src]="imageUrl" class="card-img" alt="Choose Image">
-    </div>
-  </div>
-	</div>
-	<div class="card-footer">
-    <button type="submit" kendoButton [look]="'outline'">Submit</button>
-	</div>
 
-</div>
+  </div>
 </form>

@@ -13,6 +13,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
+  
   genders:Gender[];
   selectedImage:File=null;
   selectedFileName:string="";
@@ -61,14 +62,13 @@ export class AddComponent implements OnInit {
   onSubmited(){
     const fd=new FormData();
     fd.append('studentName',this.form.get('studentName').value);
-    fd.append('dateOfBirth',this.form.get('dateOfBirth').value);
+    fd.append('dateOfBirth',this.convert(this.form.get('dateOfBirth').value));
     fd.append('genderId',this.form.get('genderId').value);
     fd.append('picture',this.selectedImage,this.selectedImage.name);
-    console.log(this.form.get("studentName").value);
-    console.log(this.form.get("dateOfBirth").value);
-    console.log(this.form.get("genderId").value);
+    console.log(this.form.get("studentName").value+" Name");
+    console.log(this.form.get("dateOfBirth").value+" dob");
+    console.log(this.form.get("genderId").value+" gId");
     this.service.post(fd).subscribe((res)=>{
-      // this.toastr.success(res.studentId, 'Your ID');
       console.log(res);
       this.router.navigate(['/students'])
     },
@@ -78,7 +78,20 @@ export class AddComponent implements OnInit {
     this.genderService.get().subscribe(res=>{
       this.genders=res;
       console.log(this.genders);
+    },(err)=>{
+      this.genders=[
+        {genderId:1,genderName:"Male"},
+        {genderId:2,genderName:"Female"}
+      ];
+      console.log("API is not working, demo value is presenting.");
     })
+  }
+
+  convert(str) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
   }
   
 }
