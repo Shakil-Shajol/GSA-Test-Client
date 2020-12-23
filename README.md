@@ -1,5 +1,11 @@
 #For API Please go to https://github.com/Shakil-Shajol/GSA-Test
 
+
+## Instruction before run
+
+Run `npm install` to install nessesary packages and dependencies.
+then run `ng serve -o` It will start a dev server and automatically open the browser and navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
